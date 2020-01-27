@@ -18,7 +18,7 @@
                 <div class="card-body mb-2">
                     <img src="{{$post->img ?? asset('img/default.jpg')}}" class="mb-2 img-fluid" alt="Responsive image">
                     <div class="mb-2">Автор: {{$post->author->name}}</div>
-                    <a href="#" class="btn btn-outline-primary">Посмотреть пост</a>
+                    <a href="{{route('posts.show',['id'=>$post->id])}}" class="btn btn-outline-primary">Посмотреть пост</a>
 
                 </div>
 
