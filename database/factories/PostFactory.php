@@ -13,6 +13,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'author_id' => factory(App\User::class),
         'short_title' => Str::length($title) > 30 ? Str::substr($title, 0, 30) . '...' : $title,
         'description' =>$faker->realText(rand(100, 500)),
+        'created_at' =>$faker->dateTimeBetween('-30 days','-1 days'),
 
     ];
 });
