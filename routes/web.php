@@ -11,5 +11,6 @@
 |
 */
 
-Route::get('/','PostController@index')->name('index');
-Route::get('search/','PostController@index')->name('search.index');
+Route::get('/','PostController@index')->name('posts.index');
+Route::get('search','PostController@index')->name('search');
+Route::get('create','PostController@create')->name('posts.create');

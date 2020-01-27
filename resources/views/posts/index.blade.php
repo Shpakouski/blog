@@ -1,36 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+@extends('app.layout')
 
-    <div class="container collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="col-6 navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Создать пост</a>
-            </li>
-
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="{{route('search.index')}}">
-            <input class="form-control mr-sm-2" name= "search" type="search" placeholder="Найти пост..." aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
-        </form>
-    </div>
-</nav>
-
-<div class="container">
-
-    @if(isset($request->search))
+@section('content')
+@if(isset($request->search))
         @if($posts->count())
         <h2 class="mb-5 mt-2">По запросу <span class="text-danger">{{$request->search}}</span> найдено <span class="text-danger">{{$posts->count()}}</span> : </h2>
            @else
@@ -58,9 +29,4 @@
         @if(!isset($request->search))
     {{$posts->render()}}
             @endif
-
-</div>
-
-
-</body>
-</html>
+@endsection
