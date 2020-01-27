@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use App\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,8 +12,24 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        /*
+         * Just for fun search, not seriously
+         * */
+
+        if($request->search){
+            $posts = Post::where('title','like', '%'.$request->search.'%')
+                ->orWhere('description','like', '%'.$request->search.'%')
+                ->orderBy('created_at', 'DESC')
+                ->get();
+
+            return view('posts.index',compact(['posts','request']));
+        }
+
+
+
         $posts = Post::orderBy('created_at', 'DESC')->paginate(4);
 
 

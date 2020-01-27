@@ -21,25 +21,44 @@
             </li>
 
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Найти пост..." aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="{{route('search.index')}}">
+            <input class="form-control mr-sm-2" name= "search" type="search" placeholder="Найти пост..." aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
         </form>
     </div>
 </nav>
 
 <div class="container">
-    <div class="row">
+
+    @if(isset($request->search))
+        @if($posts->count())
+        <h2 class="mb-5 mt-2">По запросу <span class="text-danger">{{$request->search}}</span> найдено <span class="text-danger">{{$posts->count()}}</span> : </h2>
+           @else
+            <h2 class="mb-5 mt-2">По запросу <span class="text-danger">{{$request->search}}</span> ничего не найдено! </h2>
+            <a href="{{route('index')}}" class="btn btn-outline-primary">Отобразить все посты</a>
+@endif
+        @endif
+
+        <div class="row">
 @foreach($posts as $post)
         <div class="col-6">
             <div class="card mb-2">
-                <div class="card-header">{{$post->short_title}}</div>
-                <card-body>{{$post->description}}</card-body>
+                <div class="card-header"><h2>{{$post->short_title}}</h2></div>
+                <div class="card-body mb-2">
+                    <img src="{{$post->img ?? asset('img/default.jpg')}}" class="mb-2 img-fluid" alt="Responsive image">
+                    <div class="mb-2">Автор: {{$post->author->name}}</div>
+                    <a href="#" class="btn btn-outline-primary">Посмотреть пост</a>
+
+                </div>
+
             </div>
         </div>
 @endforeach
     </div>
+        @if(!isset($request->search))
     {{$posts->render()}}
+            @endif
+
 </div>
 
 

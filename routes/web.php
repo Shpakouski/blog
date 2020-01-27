@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('/','PostController@index');
+Route::get('/','PostController@index')->name('index');
+Route::get('search/','PostController@index')->name('search.index');
