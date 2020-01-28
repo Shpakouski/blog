@@ -16,3 +16,6 @@ Route::get('search','PostController@index')->name('search');
 
 Route::resource('/posts','PostController');
 
+
+Auth::routes();
+
