@@ -1,4 +1,4 @@
-@extends('app.layout')
+@extends('app.layout',['title'=>'Главная страница'])
 
 @section('content')
 @if(isset($request->search))
@@ -6,7 +6,7 @@
         <h2 class="mb-5 mt-2">По запросу <span class="text-danger">{{$request->search}}</span> найдено <span class="text-danger">{{$posts->count()}}</span> : </h2>
            @else
             <h2 class="mb-5 mt-2">По запросу <span class="text-danger">{{$request->search}}</span> ничего не найдено! </h2>
-            <a href="{{route('index')}}" class="btn btn-outline-primary">Отобразить все посты</a>
+            <a href="{{route('posts.index')}}" class="btn btn-outline-primary">Отобразить все посты</a>
 @endif
         @endif
 
@@ -18,7 +18,7 @@
                 <div class="card-body mb-2">
                     <img src="{{$post->img ?? asset('img/default.jpg')}}" class="mb-2 img-fluid" alt="Responsive image">
                     <div class="mb-2">Автор: {{$post->author->name}}</div>
-                    <a href="{{route('posts.show',['id'=>$post->id])}}" class="btn btn-outline-primary">Посмотреть пост</a>
+                    <a href="{{route('posts.show',['post'=>$post->id])}}" class="btn btn-outline-primary">Посмотреть пост</a>
 
                 </div>
 
